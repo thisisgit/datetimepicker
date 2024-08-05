@@ -29,6 +29,7 @@
       [self addTarget:self action:@selector(didChange)
                forControlEvents:UIControlEventValueChanged];
       [self addTarget:self action:@selector(onDismiss:) forControlEvents:UIControlEventEditingDidEnd];
+      [self addTarget:self action:@selector(handleDatePickerTap) forControlEvents:UIControlEventEditingDidBegin];
     #endif
 
     _reactMinuteInterval = 1;
@@ -50,6 +51,11 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   if (_onPickerDismiss) {
     _onPickerDismiss(@{});
   }
+}
+
+- (void)handleDatePickerTap
+{
+  [self resignFirstResponder];
 }
 
 - (void)setDatePickerMode:(UIDatePickerMode)datePickerMode
